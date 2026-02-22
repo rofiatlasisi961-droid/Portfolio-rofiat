@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lasisi Rofiat Oyebode | Social Media Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Playfair Display', Georgia, serif; background: #0A0A0A; color: #F5F0E8; overflow-x: hidden; }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0A0A0A; }
+  ::-webkit-scrollbar-thumb { background: #FF3CAC; border-radius: 2px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+  .fade-up { animation: fadeUp 1s ease forwards; }
+  .fade-up-1 { animation: fadeUp 1s ease 0.2s forwards; opacity: 0; }
+  .fade-up-2 { animation: fadeUp 1s ease 0.4s forwards; opacity: 0; }
+  .fade-up-3 { animation: fadeUp 1s ease 0.6s forwards; opacity: 0; }
+  .float1 { animation: float 4s ease-in-out infinite; }
+  .float2 { animation: float 4s ease-in-out 1s infinite; }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #FF3CAC, #FFD700, #FF6B35);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 24px 48px; display: flex; justify-content: space-between; align-items: center;
+    transition: all 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(10,10,10,0.95); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; }
+  .logo span { color: #FF3CAC; }
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: #F5F0E8; text-decoration: none; opacity: 0.7; transition: opacity 0.3s; }
+  .nav-links a:hover { opacity: 1; }
+
+  /* SECTION LABEL */
+  .section-label { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: #FF3CAC; margin-bottom: 16px; }
+
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 48px 80px; position: relative; overflow: hidden; }
+  .blob1 { position: absolute; top: 10%; right: 5%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,60,172,0.12) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+  .blob2 { position: absolute; bottom: 10%; left: 10%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,107,53,0.1) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+  .hero-name { font-size: clamp(3rem, 8vw, 7rem); font-weight: 900; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .hero-tagline { font-family: 'DM Sans', sans-serif; font-size: clamp(1rem, 2vw, 1.25rem); max-width: 560px; line-height: 1.7; margin-top: 24px; margin-bottom: 40px; color: rgba(245,240,232,0.65); font-weight: 300; }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary { background: linear-gradient(135deg, #FF3CAC, #FF6B35); border: none; color: white; padding: 16px 40px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; border-radius: 2px; font-weight: 500; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255,60,172,0.4); }
+  .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #F5F0E8; padding: 16px 40px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; border-radius: 2px; text-decoration: none; display: inline-block; }
+  .btn-secondary:hover { border-color: #FF3CAC; }
+  .stat-badge { position: absolute; background: rgba(255,60,172,0.1); border: 1px solid rgba(255,60,172,0.3); backdrop-filter: blur(20px); border-radius: 16px; padding: 20px 28px; text-align: center; }
+  .stat-badge.gold { background: rgba(255,215,0,0.08); border-color: rgba(255,215,0,0.25); }
+  .stat-badge .num { font-size: 2.5rem; font-weight: 900; color: #FF3CAC; }
+  .stat-badge.gold .num { color: #FFD700; }
+  .stat-badge .label { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 4px; }
+  .badge1 { right: 8%; top: 30%; }
+  .badge2 { right: 18%; bottom: 25%; }
+
+  /* MARQUEE */
+  .marquee-wrap { border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 18px 0; overflow: hidden; }
+  .marquee-track { display: inline-block; white-space: nowrap; animation: marquee 22s linear infinite; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+
+  /* SECTIONS */
+  section { padding: 120px 48px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 60px; }
+  .section-title em { color: #FF3CAC; font-style: italic; }
+
+  /* ABOUT */
+  #about .section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  #about p { font-family: 'DM Sans', sans-serif; line-height: 1.9; color: rgba(245,240,232,0.7); font-size: 1.05rem; }
+  .platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .platform-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px 20px; text-align: center; }
+  .platform-dot-wrap { width: 48px; height: 48px; border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; }
+  .platform-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .platform-name { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; }
+
+  /* WORK */
+  #work { background: rgba(255,255,255,0.02); }
+  .cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .case-card { border-radius: 16px; padding: 40px 28px; position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; background: #111; }
+  .case-card:hover { transform: translateY(-8px); }
+  .case-blob { position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; border-radius: 50%; }
+  .case-metric { font-size: 3.5rem; font-weight: 900; margin-bottom: 8px; }
+  .case-platform { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.1em; }
+  .case-brand { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
+  .case-result { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .service-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 36px 28px; transition: all 0.3s; }
+  .service-card:hover { border-color: #FF3CAC; background: rgba(255,60,172,0.05); }
+  .service-icon { font-size: 1.5rem; margin-bottom: 16px; }
+  .service-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+  .service-price { font-family: 'DM Sans', sans-serif; color: #FF3CAC; font-size: 0.9rem; font-weight: 500; margin-bottom: 16px; }
+  .service-desc { font-family: 'DM Sans', sans-serif; color: rgba(245,240,232,0.6); font-size: 0.9rem; line-height: 1.8; }
+
+  /* TESTIMONIALS */
+  #testimonials { background: rgba(255,60,172,0.03); }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+  .testi-card { background: rgba(255,255,255,0.03); border-left: 3px solid #FF3CAC; border-radius: 0 12px 12px 0; padding: 32px 28px; }
+  .testi-quote { font-style: italic; font-size: 1.05rem; line-height: 1.8; color: rgba(245,240,232,0.85); margin-bottom: 24px; }
+  .testi-name { font-weight: 700; font-size: 0.95rem; }
+  .testi-role { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+  /* CONTACT */
+  #contact .section-inner { max-width: 700px; text-align: center; }
+  #contact .section-title { margin-bottom: 16px; }
+  #contact .sub { font-family: 'DM Sans', sans-serif; color: rgba(245,240,232,0.6); margin-bottom: 48px; font-size: 1.05rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; text-align: left; }
+  .input-field { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); color: #F5F0E8; padding: 14px 18px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.3s; border-radius: 2px; }
+  .input-field:focus { border-color: #FF3CAC; }
+  .input-field::placeholder { color: rgba(255,255,255,0.3); }
+  textarea.input-field { resize: vertical; }
+  .form-submit { align-self: center; margin-top: 8px; }
+  .success-box { background: rgba(0,201,167,0.1); border: 1px solid #00C9A7; border-radius: 12px; padding: 48px; text-align: center; display: none; }
+  .success-box.show { display: block; }
+  .success-icon { font-size: 3rem; margin-bottom: 16px; }
+  .success-title { font-size: 1.5rem; font-weight: 700; color: #00C9A7; margin-bottom: 8px; }
+  .success-msg { font-family: 'DM Sans', sans-serif; color: rgba(245,240,232,0.6); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid rgba(255,255,255,0.08); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .footer-logo { font-family: 'Playfair Display', serif; font-weight: 700; }
+  .footer-copy { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+  .footer-socials { display: flex; gap: 20px; }
+  .footer-socials span { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); text-transform: uppercase; cursor: pointer; transition: color 0.3s; }
+  .footer-socials span:hover { color: #FF3CAC; }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    #hero { padding: 100px 24px 60px; }
+    .badge1, .badge2 { display: none; }
+    section { padding: 80px 24px; }
+    #about .section-inner { grid-template-columns: 1fr; gap: 40px; }
+    footer { flex-direction: column; text-align: center; padding: 32px 24px; }
+  }
+
+  /* HERO PHOTO */
+  .hero-content { display: flex; align-items: center; gap: 60px; width: 100%; max-width: 1100px; }
+  .hero-text { flex: 1; }
+  .hero-photo-wrap { flex-shrink: 0; width: 340px; height: 420px; border-radius: 20px; overflow: hidden; border: 3px solid rgba(255,60,172,0.3); box-shadow: 0 20px 60px rgba(255,60,172,0.15); }
+  .hero-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+  /* WORK SCREENSHOTS */
+  #screenshots { background: rgba(255,255,255,0.01); }
+  .screenshots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .screenshot-card { border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s; background: #111; }
+  .screenshot-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+  .screenshot-card img { width: 100%; height: 260px; object-fit: cover; object-position: top; display: block; }
+  .screenshot-label { padding: 14px 18px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: rgba(245,240,232,0.6); }
+
+  /* SOCIAL LINKS */
+  .social-links { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
+  .social-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; text-decoration: none; transition: all 0.3s; letter-spacing: 0.05em; }
+  .social-btn.fb { background: #1877F2; color: white; }
+  .social-btn.fb:hover { background: #0d6efd; transform: translateY(-2px); }
+  .social-btn.wa { background: #25D366; color: white; }
+  .social-btn.wa:hover { background: #1ebe5d; transform: translateY(-2px); }
+
+  @media (max-width: 768px) {
+    .hero-content { flex-direction: column-reverse; gap: 30px; }
+    .hero-photo-wrap { width: 100%; height: 320px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo">LRO<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#screenshots">Gallery</a>
+    <a href="#services">Services</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="blob1"></div>
+  <div class="blob2"></div>
+  <div class="hero-content">
+  <div class="hero-text">
+    <p class="section-label fade-up-1">Social Media Manager</p>
+    <h1 class="hero-name fade-up">
+      Lasisi<br>
+      <em class="gradient-text">Rofiat</em><br>
+      Oyebode
+    </h1>
+    <p class="hero-tagline fade-up-2">I don't just post;I build brands that people can't scroll past.</p>
+    <div class="hero-btns fade-up-3">
+      <a href="#work" class="btn-primary">See My Work</a>
+      <a href="#contact" class="btn-secondary">Let's Talk</a>
+    </div>
+  </div>
+
+  <div class="stat-badge float1 badge1">
+    <div class="num">3+</div>
+    <div class="label">Years Exp.</div>
+  </div>
+  <div class="stat-badge gold float2 badge2">
+    <div class="num">10+</div>
+    <div class="label">Brands Grown</div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    Social Media Strategy ✦ Content Creation ✦ Community Management ✦ Analytics & Growth ✦ Brand Storytelling ✦ Social Media Strategy ✦ Content Creation ✦ Community Management ✦ Analytics & Growth ✦ Brand Storytelling ✦ Social Media Strategy ✦ Content Creation ✦ Community Management ✦ Analytics & Growth ✦ Brand Storytelling ✦ Social Media Strategy ✦ Content Creation ✦ Community Management ✦ Analytics & Growth ✦ Brand Storytelling ✦
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div>
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">The Strategy Behind the <em>Scroll</em></h2>
+      <p>I'm Lolade, a seasoned Social Media Manager with a sharp eye for trends, a deep understanding of audiences, and a passion for turning followers into loyal communities. With years of experience crafting strategies for brands across industries, I bring creativity, data, and storytelling together to deliver results that actually matter.</p>
+    </div>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <div class="platform-dot-wrap" style="background: rgba(255,60,172,0.15); border: 2px solid #FF3CAC;">
+          <div class="platform-dot" style="background:#FF3CAC;"></div>
+        </div>
+        <div class="platform-name" style="color:#FF3CAC;">Instagram</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-dot-wrap" style="background: rgba(0,201,167,0.15); border: 2px solid #00C9A7;">
+          <div class="platform-dot" style="background:#00C9A7;"></div>
+        </div>
+        <div class="platform-name" style="color:#00C9A7;">TikTok</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-dot-wrap" style="background: rgba(0,119,181,0.15); border: 2px solid #0077B5;">
+          <div class="platform-dot" style="background:#0077B5;"></div>
+        </div>
+        <div class="platform-name" style="color:#0077B5;">LinkedIn</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-dot-wrap" style="background: rgba(255,215,0,0.15); border: 2px solid #FFD700;">
+          <div class="platform-dot" style="background:#FFD700;"></div>
+        </div>
+        <div class="platform-name" style="color:#FFD700;">Twitter/X</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="work">
+  <div class="section-inner">
+    <p class="section-label">Case Studies</p>
+    <h2 class="section-title">Results That <em>Speak</em></h2>
+    <div class="cases-grid">
+      <div class="case-card" style="border: 1px solid rgba(255,107,53,0.2);">
+        <div class="case-blob" style="background: rgba(255,107,53,0.15);"></div>
+        <div class="case-metric" style="color:#FF6B35;">340%</div>
+        <div class="case-platform">Instagram & Tiktok</div>
+        <div class="case-brand">Jjtfarmslimited</div>
+        <div class="case-result" style="color:#FF6B35;">+340% reach in 3 months</div>
+      </div>
+      <div class="case-card" style="border: 1px solid rgba(0,201,167,0.2);">
+        <div class="case-blob" style="background: rgba(0,201,167,0.15);"></div>
+        <div class="case-metric" style="color:#00C9A7;">10K</div>
+        <div class="case-platform">LinkedIn + Twitter</div>
+        <div class="case-brand">AkawoPay Tech Startup</div>
+        <div class="case-result" style="color:#00C9A7;">5k+ Views in 3 weeks</div>
+      </div>
+      <div class="case-card" style="border: 1px solid rgba(255,60,172,0.2);">
+        <div class="case-blob" style="background: rgba(255,60,172,0.15);"></div>
+        <div class="case-metric" style="color:#FF3CAC;">68k</div>
+        <div class="case-platform">TikTok</div>
+        <div class="case-brand">Inkspire.ng</div>
+        <div class="case-result" style="color:#FF3CAC;">Views on Viral campaign — 68k views</div>
+      </div>
+      <div class="case-card" style="border: 1px solid rgba(255,215,0,0.2);">
+        <div class="case-blob" style="background: rgba(255,215,0,0.15);"></div>
+        <div class="case-metric" style="color:#FFD700;">41 Subscribers</div>
+        <div class="case-platform">Substack</div>
+        <div class="case-brand">The Content Club</div>
+        <div class="case-result" style="color:#FFD700;">In 24hours</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PAST WORK SCREENSHOTS -->
+<section id="screenshots">
+  <div class="section-inner">
+    <p class="section-label">Past Work</p>
+    <h2 class="section-title">Work <em>Snapshots</em></h2>
+    <div class="screenshots-grid">
+      <div class="screenshot-card">
+        <img src="images/work2.png" alt="19Events Instagram Growth" />
+        <div class="screenshot-label">19Events — Instagram Profile Growth</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="images/work4.png" alt="TikTok Analytics" />
+        <div class="screenshot-label">Inkspire.ng — TikTok 66K Views Analytics</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="images/work1.jpeg" alt="Luminous Tech Profile Revamp" />
+        <div class="screenshot-label">Luminous Tech — Before & After Profile Revamp</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="images/work3.jpeg" alt="19Events Before" />
+        <div class="screenshot-label">19Events — Early Stage Profile Setup</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <p class="section-label">Services & Pricing</p>
+    <h2 class="section-title">What I <em>Offer</em></h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">★</div>
+        <div class="service-title">Social Media Strategy</div>
+        <div class="service-price">From ₦150,000/mo</div>
+        <div class="service-desc">Custom roadmaps built around your brand goals: content pillars, posting schedules, and growth tactics.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✦</div>
+        <div class="service-title">Content Creation</div>
+        <div class="service-price">From ₦80,000/mo</div>
+        <div class="service-desc">Captions, graphics briefs, reels scripts, and carousel copy that stop the scroll and spark engagement.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">◆</div>
+        <div class="service-title">Community Management</div>
+        <div class="service-price">From ₦60,000/mo</div>
+        <div class="service-desc">Daily engagement, DM handling, and comment moderation to keep your audience active and loyal.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">●</div>
+        <div class="service-title">Analytics & Reporting</div>
+        <div class="service-price">From ₦40,000/mo</div>
+        <div class="service-desc">Monthly performance reports with insights you can act on and not just numbers that look pretty.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <p class="section-label">Testimonials</p>
+    <h2 class="section-title">What Clients <em>Say</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-quote">"Lolade completely transformed my business page on Instagram. We went from 13followers to 80followers in 3weeks and our Views Skyrocket. She knows exactly what she's doing."</p>
+        <div class="testi-name">Ummi Salamatu.</div>
+        <div class="testi-role">CEO, 19events</div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"The strategy she built for us brought in 60k views & 2000+ comment on a viral post. Absolute professional."</p>
+        <div class="testi-name">Shubomi T.</div>
+        <div class="testi-role">CEO, Inkspire.ng</div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"She doesn't just manage your page — she becomes your brand. Every caption, every story felt like ME. Highly recommend."</p>
+        <div class="testi-name">Oladiran B.</div>
+        <div class="testi-role">Jjt farms</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Ready to <em>Grow</em>?</h2>
+    <p class="sub">Let's build something your audience will love.</p>
+    <div class="social-links" style="justify-content:center;">
+      <a href="https://www.facebook.com/share/189qcymZx6/?mibextid=wwXIfr" target="_blank" class="social-btn fb">📘 Facebook</a>
+      <a href="https://wa.me/message/XMK4DQDLLXYIM1" target="_blank" class="social-btn wa">💬 WhatsApp</a>
+    </div>
+    <p style="font-family:'DM Sans',sans-serif;color:rgba(245,240,232,0.3);font-size:0.85rem;margin-top:16px;margin-bottom:32px;">— or fill the form below —</p>
+
+    <form class="contact-form" id="contactForm">
+      <input class="input-field" type="text" placeholder="Your Name" required />
+      <input class="input-field" type="email" placeholder="Your Email" required />
+      <textarea class="input-field" placeholder="Tell me about your brand and goals..." rows="5" required></textarea>
+      <button type="submit" class="btn-primary form-submit">Send Message</button>
+    </form>
+
+    <div class="success-box" id="successBox">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Message Sent!</div>
+      <div class="success-msg">Thanks for reaching out. I'll get back to you within 24 hours.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">LRO<span style="color:#FF3CAC;">.</span></div>
+  <div class="footer-copy">© 2025 Lasisi Rofiat Oyebode · Social Media Manager</div>
+  <div class="footer-socials">
+    <a href="https://www.facebook.com/share/189qcymZx6/?mibextid=wwXIfr" target="_blank" style="color:rgba(255,255,255,0.4);text-decoration:none;font-family:'DM Sans',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Facebook</a>
+    <a href="https://wa.me/message/XMK4DQDLLXYIM1" target="_blank" style="color:rgba(255,255,255,0.4);text-decoration:none;font-family:'DM Sans',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+  // Sticky nav
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Contact form
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.getElementById('successBox').classList.add('show');
+  });
+</script>
+</body>
+</html>
